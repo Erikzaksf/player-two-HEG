@@ -1,5 +1,8 @@
 <% @games.each do |game| %>
  <p><%= game.name %> | <%= number_to_currency game.price %>
-
- <% end %></p>
+   <%= form_for @order_item do |f| %>
+    <%= f.hidden_field :game_id, value: game.id %>
+    <%= f.number_field :quantity %>
+  <% end %></p>
+<% end %><
 <h2>Test Test test</h2>

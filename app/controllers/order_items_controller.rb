@@ -1,4 +1,4 @@
-class OrderItemsController < ApplicationController
+class OrderItemController < ApplicationController
 
   def create
     @order = current_order
@@ -6,6 +6,14 @@ class OrderItemsController < ApplicationController
     @order.save
     session[:order_id] = @order.id
     redirect_to games_path
+  end
+
+  def destroy
+    @order = current_order
+    @item = @order.order_items.find(params[:id])
+    @item.destroy
+    @order.save
+    redirect_to cart_path
   end
 
   private
